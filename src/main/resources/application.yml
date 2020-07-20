@@ -1,0 +1,36 @@
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://bitbucket.org/quockhanh2403/configs
+          search-paths: '{application}'
+          username: quockhanh2403
+          password: Dokhanh1@
+          default-label: "master"
+  zipkin:
+    baseUrl: http://localhost:9411/
+    sender:
+      type: web
+  sleuth:
+    sampler:
+      probability: 1.0
+server:
+  port: 8888 #the port where the config-server will be acessible
+management:
+  endpoint:
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: [ "*" ]
+  metrics:
+    export:
+      prometheus:
+        enabled: true
